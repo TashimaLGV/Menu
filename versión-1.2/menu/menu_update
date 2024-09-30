@@ -1,0 +1,26 @@
+#!/bin/bash
+
+clear
+echo "====================="
+echo "|   Window Update   |"
+echo "====================="
+echo "| ¿Desea actualizar |"
+echo "====================="
+readl -p "(y/n): " option
+
+case $option in
+    y)
+        echo "Actualizando."
+        cd /usr/local/bin && sudo git clone https://github.com/TashimaLGV/proyecto-ubuntu.git
+        echo "Se termino de actualizar."
+        exit
+        ;;
+    n)
+        echo "Cerrando archivo bash."
+        exit
+        ;;
+        echo "Cerrando archivo bash."
+        exit
+    *)
+        ;;
+esac

@@ -1,0 +1,146 @@
+#!/bin/bash
+
+# Menú de opciones.
+echo "==============================="
+echo "|Menú princpial.              |"
+echo "==============================="
+echo "|¿Qué le gustaria hacer hoy?  |"
+echo "|(1) Actualizar.              |"
+echo "|(2) Eliminar archivos basura.|"
+echo "|(3) Instalar programas.      |" 
+echo "|(4) |"
+echo "==============================="
+read -p "Opciones: " menu
+
+# Opciones.
+case $menu in 
+  # Actualizar sistema.
+  1)
+    echo "¿Realmente quiere actualizar?"
+    read -p "(y/n): " cuenta 
+
+    case $cuenta in
+
+     y) 
+        sudo apt-get update
+        echo "Listado de paquetes para su instalación u actualización."
+        apt list --upgradable
+        echo "¿Quieres instalar los paquetes?"
+        read -p "(y/n): " cuenta1
+
+        case $cuenta1 in 
+          y )
+            sudo apt upgrade
+            apt list --upgradable
+            echo "Si aun quedan paquetes, vuelva a ejecutar este archivo bash nuevamente." 
+            echo "Cerrando el archivo bash"
+            ;;
+          n )
+            echo "Cerrando el archivo bash"
+            exit
+            ;;
+          * )
+            echo "Cerrando el archivo bash"
+            exit
+            ;;
+        esac 
+        ;;
+      n)
+        echo "Cerrando el archivo bash"
+        ;;
+     *)
+       echo "Cerrando el archivo bash"
+        exit
+        ;;
+    esac
+  ;;
+  # Eliminar archivos del sistema.
+  2)
+    echo "¿Desea hacer una limpieza de los archivos basura?"
+    read -p "(y/n): " eliminar
+
+    case $eliminar in 
+      y)
+        echo "Haciendo limpieza."
+        sudo apt-get autoclean
+        sudo apt-get clean
+        sudo apt-get autoremove
+        sudo deborphan | xargs sudo apt-get -y remove --purge  
+        echo "Limpieza completada, cerrando el archivo bash."
+      ;;
+      n)
+        echo "Cerrando el archivo bash."
+        exit
+      ;;
+      *)
+        echo "Cerrando el archivo bash."
+        exit
+      ;;
+    esac
+  ;;
+  # Instalar Programas en el sistema.
+  3)
+    echo "¿Cómo gustaria instalar el programa?"
+    echo "(1) Isntalación directa."
+    echo "(2) Mediante una paqueteria."
+    read -p "Opcion: " opcion_
+
+    case $opcion_ in 
+      1)
+        echo "¿Cual es el nombre del programa a instalar?"
+        read -p "Nombre: " $name
+
+        sudo apt install $name
+        echo "cerrando el archivo bash."
+        exit
+        ;; 
+      2)
+        echo "¿Cual de las siguientes paqueterias desea instalar?"
+        echo "(1) snap."
+        echo "(2) flatpak."
+        echo "(3) deb."
+        read -p "Paquete: " paquete
+
+        case $paquete in 
+          1)
+            echo "¿Cual es el nombre de su programa a instalar?"
+            read -p "Nombre: " nombre_paquete
+
+            snap install $nombre_paquete
+            echo "cerrando el archivo bash"
+            exit
+            ;;
+          2) 
+            echo "¿Cual es el nombre de su programa a instalar?"
+            read -p "Nombre: " nombre_paquete
+
+            flatpak install $nombre_paquete
+            echo "cerrando el archivo bash"
+            exit
+            ;;
+          3) 
+            echo "¿Cual es el nombre de su programa a instalar?"
+            read -p "Nombre: " nombre_paquete
+
+            cd ~/Descargas
+            sudo dpkg -i $nombre_paquete
+            echo "cerrando el archivo bash"
+            exit
+            ;;
+          *)
+            echo "cerrando el archivo bash"
+            exit
+            ;;
+        esac
+        ;;
+      *)
+        ;;
+    esac
+  ;;
+  4)
+  ;;
+  # Variables.
+  *)
+    echo "cerrando el archivo bash."
+    exit
+esac

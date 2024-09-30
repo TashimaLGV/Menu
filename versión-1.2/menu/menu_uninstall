@@ -1,0 +1,30 @@
+#!/bin/bash
+
+echo "¿Quieres desinstalar el ScrptBash de Menú de la distribución?"
+read -p "(Y/n): " opcion
+
+case $opcion in
+
+    1)
+        echo "Eliminando los ScriptBash de la distribución."
+        sudo rm -r /usr/local/bin/menu
+        sudo rm -r /usr/local/bin/menu_help
+        sudo rm -r /usr/local/bin/menu_update
+        sudo rm -r /usr/local/bin/menu_uninstall
+        sleep 1
+        clear
+        ;;
+    2)
+        echo "Cerrando el ScriptBash."
+        sleep 1
+        clear
+        exit
+        ;;
+
+    *)
+        echo "Cerrando el ScriptBash."
+        sleep 1
+        clear
+        exit
+        ;;
+esac

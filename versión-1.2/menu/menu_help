@@ -1,0 +1,17 @@
+#!/bin/bash
+
+clear
+echo "¿Qué hace el comando menu?"
+echo ""
+echo "Realizar acciones cotidianas de forma automatica, como las actualizaciones, eliminar archivos y instalar programas"
+echo "de una forma más simple, rapida y intuitiva, así automatizar y acelerar las acciones dentro de la terminal, si," 
+echo "este se actualiza constantemente para agregar nuesvas funciones, tambien tenemos la opcion de agregar nuevas funciones" 
+echo "dentro del script."
+echo ""
+echo "Comandos del scripbash de Menú."
+echo ""
+echo "  - menu                : menú de opciones para la realización de acciones sencillas."
+echo "  - menu_help           : Ver comandos ejecutables del Menú."
+echo "  - menu_update         : Actualizar el ScriptBash del Menú."
+echo "  - menu_menu_uninstall : Desinstalar el ScriptBash del Menú."
+echo ""
